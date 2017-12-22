@@ -28,7 +28,7 @@ SECRET_KEY = '5t%$^br^0$+ns4wi%x$-3iq3m_7^jr0-rw^p6kx2jjk^g2ir*c'
 DEBUG = True
 
 # ALLOWED_HOSTS = ['192.168.12.39', '127.0.0.1', ]
-ALLOWED_HOSTS = ['192.168.12.39', 'localhost', '127.0.0.1', ]
+ALLOWED_HOSTS = ['192.168.12.39', 'localhost', '127.0.0.1', 'rosesandvowscdo.pythonanywhere.com' ]
 
 # Application definition
 
