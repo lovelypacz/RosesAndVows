@@ -1,0 +1,32 @@
+{%  extends 'home.html' %}
+{% load i18n %}
+{% load bootstrap %}
+
+{% block content %}
+
+    <div class="post_edit">
+{##}
+{#        <form role="form" method="post" action="{% url "client_signup" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>#}
+{#            <legend>{% trans "New Post" %}</legend>#}
+{#            {% csrf_token %}#}
+{#            {{ form|bootstrap }}#}
+{#            {% if redirect_field_value %}#}
+{#            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />#}
+{#            {% endif %}#}
+{#            <button type="submit" class="btn btn-success btn-block btn-lg">{% trans "Create Post" %}</button>#}
+{#        </form>#}
+
+        <form method="POST" action="{% url 'post_new' %}">
+            {% csrf_token %}
+            {{ form|bootstrap }}
+{#            {% if redirect_field_value %}#}
+{#            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />#}
+{#            {% endif %}#}
+            <button type="submit" class="btn btn-success btn-block btn-lg">{% trans "Create Post" %}</button>
+
+{#            <input type="submit" value="Submit">#}
+        </form>
+
+{#        <br><br>&nbsp;&nbsp;&nbsp;&nbsp; <a href="{% url 'post_new' %}">Create New Post</a>#}
+    </div>
+{% endblock %}

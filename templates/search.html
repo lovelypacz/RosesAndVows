@@ -1,0 +1,107 @@
+{#{%  extends 'site_base.html' %}#}
+{#{%  extends 'home.html' %}#}
+{#{% load account_tags %}#}
+{% load static %}
+
+{% load i18n %}
+<head>
+          <link rel="stylesheet" href="{% static 'css/source.min.css' %}">
+
+    <style>
+        .filter-border{
+            border-radius: 5px;
+            padding: 8px;
+            border: solid dimgray 1px;
+
+        }
+        .filter-width{
+            width: 375px;
+        }
+        .filter-button{
+            background-color: black;
+            color: white;
+        }
+
+        .filter{
+
+        }
+
+        .search-results{
+            float: left;
+            position: relative;
+        }
+
+        .image-crop{
+            width: 50%;
+            height: 50%;
+
+        }
+
+    </style>
+</head>
+<header>
+    {% include '_navbar.html' %}
+</header>
+<body>
+<br><br><br><br><br>
+{% block content %}
+{#<div class="row">#}
+    <div class="container-fluid">
+        <div class="">
+
+            <ul style="float: left; position: relative;">
+                <br><div><h3 class="" style="position: relative; padding-left: 95px;">SEARCH FILTER</h3></div>
+                <br><input type="text" name="Place" placeholder="CATEGORY" class="filter-border filter-width">
+                <br><br><input type="text" name="Place" placeholder="LOCATION" class="filter-border filter-width">
+    {#            <br><br><input type="text" name="Budget Range" placeholder="BUDGET RANGE" class="filter">TO<input type="text" name="BUDGET RANGE" placeholder="BUDGET RANGE" class="filter">#}
+                <br><br><input type="text" name="Budget Limit" placeholder="BUDGET LIMIT" class="filter-border filter-width">
+                <br><br><input type="text" name="Business Name" placeholder="BUSINESS NAME" class="filter-border filter-width">
+                <br><br><input type="submit" name="Filter" value="FILTER" class="filter-border filter-width filter-button">
+
+            </ul>
+
+            <ul>
+{#                <li navbar="float:left;"><a href="#" ><img src="{% static 'img/il_fullxfull.990700147_k5zv.jpg' %}" navbar="width: 50%; height: 50%;"></a></li>#}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3 style="position: relative; padding-left: 95px;"><p>SEARCH RESULTS . . .</p></h3>
+
+{#            <br><br>#}
+{#            <ul>#}
+{#                <li class="search-results image-crop"><div><a href="#" ><img navbar="width: 50%; height: 50%;" src="{% static 'img/il_fullxfull.990700147_k5zv.jpg' %}"></a></div></li>#}
+{#                <li class="search-results image-crop"><div><a href="#"><img  navbar="width: 50%; height: 50%;" src="{% static 'img/kathryn.jpg' %}" ></a></div></li>#}
+{#                <li class="search-results image-crop"><div><a href="#"><img navbar="width: 50%; height: 50%;" src="{% static 'img/13_03_1710_57_20dest.jpg' %}"></a></div> </li>#}
+{#                <li class="search-results image-crop"><div><a href="#"><img navbar="width: 50%; height: 50%;" src="{% static 'img/cuckoo-cloud-concepts-alexis-mendoza-debut-photoshoot-whimsical-fairytale-princess-and-the-pea-pod-flowers-cebu-stylist-22.jpg' %}"></a></div></li>#}
+            </ul>
+{#            </ul>#}
+
+        </div>
+
+
+        <div class="profile" style="">
+{#            &nbsp;&nbsp;&nbsp;&nbsp;<h3><p>SEARCH RESULTS . . .</p></h3>#}
+{##}
+{#            <br><br>#}
+{#            <ul>#}
+{#                <li navbar="float:left;"><a href="#" ><img src="{% static 'img/il_fullxfull.990700147_k5zv.jpg' %}" navbar="width: 50%; height: 50%;"></a></li>#}
+{#                <li navbar="float:left;"><a href="#"><img src="{% static 'img/img-thing (2).jpg' %}" ></a> </li>#}
+{#                <li navbar="float:left;"><a href="#"><img src="{% static 'img/13_03_1710_57_20dest.jpg' %}" navbar="width: 70%; height: 100%"></a> </li>#}
+{#                <li navbar="float:left;"><a href="#"><img src="{% static 'img/cuckoo-cloud-concepts-alexis-mendoza-debut-photoshoot-whimsical-fairytale-princess-and-the-pea-pod-flowers-cebu-stylist-22.jpg' %}" navbar="width: 500px; height: 300px;"></a></li>#}
+{#            </ul>#}
+
+    {#        <br>{% trans "Account Group : " %}{{ profile_group_user.name }}#}
+    {#        <br>{% trans "First Name : " %}{{ profile.first_name }}#}
+    {#        <br>{% trans "Last Name : " %}{{ profile.last_name }}#}
+    {#        <br>{% trans "Email Address : " %}{{ profile.email }}#}
+    {#        <br><br><br>#}
+    {#        {% if profile_group_user.name == 'Coordinators' %}#}
+    {#            <a href="{% url 'posts' %}">View Posts</a>#}
+    {#            <a href="{% url 'posts' id=user.pk %}">View Posts</a>#}
+    {#        {% endif %}#}
+    {#        &nbsp;&nbsp;&nbsp;&nbsp; <a href="{% url 'edit_profile' id=user.pk %}">Edit Profile</a>#}
+    {#        <a href="{% url 'account_password' %}">Change Password</a>#}
+    {#        <a href="{% url '' id=user.pk %}">Edit Profile</a>#}
+        </div>
+    </div>
+{#</div>#}
+{% endblock %}
+
+</body>

@@ -1,0 +1,23 @@
+{%  extends 'home.html' %}
+{% load i18n %}
+{% block content %}
+
+    <div class="post_list">
+
+        {% if posts.count == 0 %}
+            <div><p>{% trans 'You still have not posted.' %}</p></div>
+
+        {% else %}
+            <br><div><p>You have {{ posts.count }} posts.</p> </div>
+            {% for post in posts %}
+                <br>
+                {{ posts.title }}
+                <br>
+            {% endfor %}
+        {% endif %}
+
+
+
+        <br><br>&nbsp;&nbsp;&nbsp;&nbsp; <a href="{% url 'post_new' %}">Create New Post</a>
+    </div>
+{% endblock %}

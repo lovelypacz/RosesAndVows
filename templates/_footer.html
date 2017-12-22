@@ -1,0 +1,24 @@
+{% load staticfiles %}
+
+{% block footer %}
+<div class="bottommenu">
+    <div class="bottomlogo">
+        <span class="dotlogo">&bullet;</span><img src="{% static 'img/logo.png' %}" style="width: 300px; height: 137px;" alt="logo1"><span class="dotlogo">&bullet;;</span>
+    </div>
+    <ul class="nav nav-tabs bottomlinks">
+        <li role="presentation"><a href="#" role="button">ABOUT US</a></li>
+        <li role="presentation"><a href="#">CATEGORIES</a></li>
+        <li role="presentation"><a href="#">PREORDERS</a></li>
+        <li role="presentation"><a href="#">CONTACT US</a></li>
+        <li role="presentation"><a href="#">RECEIVE OUR NEWSLETTER</a></li>
+    </ul>
+    <p>"Quick View Event Organizing Deals and Services." </p>
+    <img src="{% static 'img/line.png' %}" alt="line"> <br>
+    <div class="bottomsocial">
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-google-plus"></i></a>
+        <a href="#"><i class="fa fa-pinterest"></i></a>
+    </div>
+</div>
+{% endblock %}

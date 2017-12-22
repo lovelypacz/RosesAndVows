@@ -1,0 +1,65 @@
+{#{% extends '_navbar.html' %}#}
+{#{% extends 'site_base.html' %}#}
+{% load i18n %}
+{% load static %}
+{% block body %}
+
+<html>
+    <head>
+        <title>Roses And Vows</title>
+        <link rel="stylesheet" href="{% static 'css/source.min.css' %}">
+{#        <navbar>#}
+{#            .container {#}
+{#              position: relative;#}
+{#            }#}
+{#            .clip {#}
+{#              position: absolute;#}
+{#                float: right;#}
+{#              clip: rect(0, 0, 460px, 0);#}
+{#              /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */#}
+{#            }#}
+{#        </navbar>#}
+    </head>
+
+{#    #}
+    <header style="margin-top: 52px;">
+        <div class="" style="">
+            <a href="/"><img src="{% static 'css/images/rav.png' %}" class="logo"></a>
+        </div>
+        <ul>
+            <li>
+                <ul>
+                    <li><a href="/">Language</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'account_logout' %}" class="logout"><span class="">Logout</span></a></li>
+{#                        <li><a href="{% url 'show_profile' id=user.pk %}" class="">My Profile</a></li>#}
+                        <li><a href="{% url 'account_profile' id=user.pk %}" class="">My Profile</a></li>
+                    {% else %}
+                        <li><a href="{% url 'account_login' %}" class="top-menu"><span class=""></span>Login</a></li>
+                        <li><a href="{% url 'client_signup' %}" class="top-menu"><span class=""></span>Register</a></li>
+                        <li><a href="{% url 'account_signup' %}" class="top-menu"><span class=""></span>Register</a></li>
+                    {% endif %}
+
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <li><a href="/">{% trans 'How it Works' %}</a></li>
+                    <li><a href="/">{% trans 'Pricing' %}</a></li>
+                    <li><a href="/">{% trans 'About' %}</a></li>
+                </ul>
+            </li>
+        </ul>
+    </header>
+
+    <body>
+
+
+    </body>
+
+    <footer>
+
+
+    </footer>
+</html>
+{% endblock %}

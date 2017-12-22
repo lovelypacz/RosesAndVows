@@ -1,0 +1,78 @@
+{% extends 'site_base.html' %}
+
+{% load staticfiles %}
+{% load account_tags %}
+{% load i18n %}
+{% load bootstrap %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Clientele Dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+{% block body %}
+<div class="container">
+    <nav class="navbar navbar-expand-lg">
+        <h1 class="navbar-name">MY ACCOUNT</h1>
+    </nav>
+    <div class="row">
+        <div class="col-md-4 col-mar">
+            <div class="thumbnail thumb-bor">
+                <div class="caption cap-style">
+                    <h3 class="name-style">Bookmarks</h3>
+                </div>
+                <a href="#" target="_blank">
+                    <img src="{% static 'img/bookmarks-icon-5.png' %}" alt="Schedule"
+                         style="width:180px; height:120px; padding:10px 0;">
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-mar">
+            <div class="thumbnail thumb-bor">
+                <div class="caption cap-style">
+                    <h3 class="name-style">Messages</h3>
+                </div>
+                <a href="{% url 'dialogs_detail' username=profile.username %}" target="_blank">
+                    <img src="{% static 'img/email.png' %}" alt="Chat" style="width:180px; height:120px;">
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-mar">
+            <div class="thumbnail thumb-bor">
+                <div class="caption cap-style">
+                    <h3 class="name-style">Account Settings</h3>
+                </div>
+                <a href="{% url 'edit_profile' id=profile.pk %}" target="_blank">
+                    <img src="{% static 'img/Wilson-Electric-Rewinds-and-Repairs.png' %}" alt="Settings"
+                         style="width:180px; height:120px; padding:10px 0;">
+                </a>
+            </div>
+
+        </div>
+
+        <div class="col-md-4 col-mar">
+            <div class="thumbnail thumb-bor">
+                <div class="caption cap-style">
+                    <h3 class="name-style">Archive</h3>
+                </div>
+                <a href="#" target="_blank">
+                    <img src="{% static 'img/archive.png' %}" alt="Archive"
+                         style="width:180px; height:120px; padding:10px 0;">
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{%  endblock %}
+</body>
+</html>

@@ -1,0 +1,118 @@
+{% extends 'site_base.html' %}
+{% load static %}
+{% load i18n %}
+{% load bootstrap %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+
+{% block body %}
+<div class="allcontain">
+	<div id="carousel-up" class="carousel slide" data-ride="carousel">
+		<div class="carousel-inner " role="listbox">
+			<div class="item active">
+				<img src="{% static 'img/Wedding.png' %}" alt="oldcar">
+				<div class="carousel-caption">
+					<h2>Wedding Events</h2>
+					<p>Stress no more! Enjoy a hassle-free wedding<br>
+						and have your memorable day as special as you are.</p>
+				</div>
+			</div>
+			<div class="item">
+				<img src="{% static 'img/debut.png' %}" alt="porche">
+				<div class="carousel-caption">
+					<h2>Debut Day</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur ,<br>
+						sed do eiusmod tempor incididunt ut labore </p>
+				</div>
+			</div>
+			<div class="item">
+				<img src="{% static 'img/Corporate.jpg' %}" alt="benz">
+				<div class="carousel-caption">
+					<h2>Corporate Events</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur ,<br>
+						sed do eiusmod tempor incididunt ut labore </p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- ____________________Featured Section ______________________________-->
+<div class="allcontain">
+	<div class="feturedsection">
+		<h1 class="text-center"><span class="bdots">&bullet;</span>F E A T U R E D<span class="carstxt">E V E N T S</span>&bullet;</h1>
+	</div>
+	<div class="feturedimage">
+		<div class="row firstrow">
+			<div class="col-lg-6 costumcol colborder1">
+				<div class="row costumrow">
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 img1colon">
+						<img src="{% static 'img/thumbnail.png' %}" alt="porsche">
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 txt1colon ">
+						<div class="featurecontant">
+							<h1>Wedding 1</h1>
+							<p>"Lorem ipsum dolor sit amet, consectetur ,<br>
+			 						sed do eiusmod tempor incididunt </p>
+			 				<button id="btnRM" onclick="location.href='{% url 'home' %}'">READ MORE</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 costumcol colborder2">
+				<div class="row costumrow">
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 img2colon">
+						<img src="{% static 'img/thumbnail.png' %}" alt="porsche1">
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 txt1colon ">
+						<div class="featurecontant">
+							<h1>Wedding 2</h1>
+							<p>"Lorem ipsum dolor sit amet, consectetur ,<br>
+			 						sed do eiusmod tempor incididunt </p>
+			 				<button id="btnRM2" onclick = "location.href='{% url 'home' %}'">READ MORE</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		<div class="row firstrow">
+			<div class="col-lg-6 costumcol colborder1">
+				<div class="row costumrow">
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 img1colon">
+						<img src="{% static 'img/thumbnail.png' %}" alt="porsche">
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 txt1colon ">
+						<div class="featurecontant">
+							<h1>Wedding 3</h1>
+							<p>"Lorem ipsum dolor sit amet, consectetur ,<br>
+			 						sed do eiusmod tempor incididunt </p>
+			 				<button id="btnRM" onclick="location.href='{% url 'home' %}'">READ MORE</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 costumcol colborder2">
+				<div class="row costumrow">
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 img2colon">
+						<img src="{% static 'img/thumbnail.png' %}" alt="porsche1">
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 txt1colon ">
+						<div class="featurecontant">
+							<h1>Wedding 4</h1>
+							<p>"Lorem ipsum dolor sit amet, consectetur ,<br>
+			 						sed do eiusmod tempor incididunt </p>
+			 				<button id="btnRM2" onclick = "location.href='{% url 'home' %}'">READ MORE</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+</body>
+</html>
