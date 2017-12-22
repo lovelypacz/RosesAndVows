@@ -22,6 +22,7 @@
 			</ul>
 			<ul class="givusacall">
 				<li>Give us a call +639262651006 </li>
+                <li>{{ BASE_DIR }}</li>
 			</ul>
 			<ul class="logreg">
                 {% if user.is_authenticated %}
@@ -39,7 +40,7 @@
                 {% else %}
                     <li><a href="{% url 'account_login' %}" class="hidden-xs">Login</a></li>
                     <li><a> | </a></li>
-                    <li><a href="{% url 'client_signup' %}" class="hidden-xs"><span cla ss="register"> Register</span></a></li>
+                    <li><a href="{% url 'client_signup' %}" class="hidden-xs"><span class="register"> Register</span></a></li>
                 {% endif %}
 			</ul>
 	</div>
