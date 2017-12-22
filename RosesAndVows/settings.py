@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'pinax_theme_bootstrap',
     'bootstrapform',
     'django_inlinecss',
-    # 'bootstrap3',
+
     # 'social_django',
 
     # 'south',
