@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'pinax_theme_bootstrap',
     'bootstrapform',
     'django_inlinecss',
-    'bootstrap3',
+    # 'bootstrap3',
     # 'social_django',
 
     # 'south',
@@ -110,12 +110,19 @@ DATABASES = {
     #     # 'HOST': '',
     #     # 'PASSWORD': '',
     # }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'rav',
+    #     'USER': 'root',
+    #     'HOST': 'localhost',
+    #     'PASSWORD': '',
+    # }
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'rav',
-        'USER': 'root',
-        'HOST': 'localhost',
-        'PASSWORD': '',
+        'NAME': 'RosesAndVowsCdo$rav',
+        'USER': 'RosesAndVowsCdo',
+        'PASSWORD': 'FourthHarmony',
+        'HOST': '<RosesAndVowsCdo.mysql.pythonanywhere-services.com',
     }
 }
 
