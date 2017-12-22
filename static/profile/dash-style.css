@@ -1,0 +1,44 @@
+
+.navbar-name {
+    font-family:'BebasNeue Regular', serif;
+    font-size: 30px;
+    color: black;
+    font-stretch: extra-expanded;
+}
+
+.col-mar {
+    margin-left: 130px;
+    margin-bottom: 50px;
+}
+
+.thumb-bor {
+    border: 2px solid #373737;
+}
+
+.cap-style {
+    border-bottom: 2px solid #373737;
+    background-color: #373737;
+}
+
+.name-style {
+    text-align: center;
+    margin-top: 10px;
+    color: white;
+}
+
+.col-md-4:hover {
+    opacity: 0.7;
+}
+.navbar{
+    margin-left: 220px;
+}
+
+.custom_top {
+    margin-top: 10px;
+
+}
+
+.custom_top_sm {
+    margin-top: 30px;
+
+}

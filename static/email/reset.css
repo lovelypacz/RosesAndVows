@@ -1,0 +1,51 @@
+.container {
+    background-color: whitesmoke;
+    padding-bottom: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.content {
+    text-align: center;
+    margin: 0 20px;
+    padding-bottom: 30px;
+    background-color: white;
+}
+
+.message {
+    padding: 0 50px;
+    text-align: center;
+    font-size: 18px;
+    color: black;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-family: "Garamond", "Georgia", "serif";
+    font-weight: bolder;
+}
+
+.actbtn {
+    margin: auto;
+    display: block;
+    padding: 10px;
+    background-color: #dca650;
+    border: solid 2px wheat;
+    color: white;
+    width: 200px;
+    height: 25px;
+    text-decoration: none;
+    font-size: 18px;
+    text-align: center;
+}
+
+img {
+    display: block;
+    width: 200px;
+    height: 120px;
+}
+
+.title{
+    padding: 5px 0;
+    background-color: #ffd77f;
+    font-family: "Garamond", "Georgia", "serif";
+    font-variant:small-caps;
+}
