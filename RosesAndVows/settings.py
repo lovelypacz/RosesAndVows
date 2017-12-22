@@ -122,7 +122,7 @@ DATABASES = {
         'NAME': 'RosesAndVowsCdo$rav',
         'USER': 'RosesAndVowsCdo',
         'PASSWORD': 'FourthHarmony',
-        'HOST': '<RosesAndVowsCdo.mysql.pythonanywhere-services.com',
+        'HOST': 'RosesAndVowsCdo.mysql.pythonanywhere-services.com',
     }
 }
 
