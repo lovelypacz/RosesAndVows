@@ -42,7 +42,7 @@ from Coordinator.views import MySite
 urlpatterns = [
     url(r'^account/login/profile/posts/$', post_list, name='posts'),
     url(r'^account/login/profile/posts/create/$', post_new, name='post_new'),
-    url(r'^account/login/profile/posts/search/', search, name='search'),
+    url(r'^account/login/profile/posts/list/search/', search, name='search'),
     # url(r'^account/login/profile/posts/create/', post_new, name='post_new'),
     # url(r'^account/login/profile/posts/(?P<id>\d+)/', post_list, name='posts'),
 
