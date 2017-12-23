@@ -1,6 +1,6 @@
-{%  extends 'home.html' %}
 {% load i18n %}
 {% block content %}
+{% load bootstrap %}
 
     <div class="post_list">
 
@@ -8,16 +8,13 @@
             <div><p>{% trans 'You still have not posted.' %}</p></div>
 
         {% else %}
-            <br><div><p>You have {{ posts.count }} posts.</p> </div>
+            <br><div><p>There are {{ posts.count }} posts.</p> </div>
             {% for post in posts %}
                 <br>
-                {{ posts.title }}
+                {{ post.package_name }}
+{#                    {{ post }}#}
                 <br>
             {% endfor %}
         {% endif %}
-
-
-
-        <br><br>&nbsp;&nbsp;&nbsp;&nbsp; <a href="{% url 'post_new' %}">Create New Post</a>
     </div>
 {% endblock %}

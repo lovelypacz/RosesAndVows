@@ -6,10 +6,10 @@
 {% load bootstrap %}
     <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="{% static 'css/source.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/base.min.css' %}">
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="{% static 'css/dash-navbar.css' %}">
+  <link rel="stylesheet" href="{% static 'css/dash-style.css' %}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -18,24 +18,24 @@
     </header>
     <br><br><br><br><br><br><br><br><br><br>
     <div class="post_list">
+        {% if isPosted %}
+            <h1>Your post is successfully saved!</h1>
+            <br><br><h2><a href="{% url 'post_new' %}">Create New Post</a></h2>
+        {% elif isPostedStr != "" %}
+            <h1>{{ isPostedStr }}</h1>
+            <h3>Input a new package name if you accidentally entered an existing package name.</h3>
+            <br><br><h2><a href="{% url 'post_new' %}">Create New Post</a></h2>
+        {% else %}
+            <form role="form" method="post" action="{% url "post_new" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+                <legend>{% trans "New Post" %}</legend>
+                {% csrf_token %}
+                {{ form|bootstrap }}
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <button type="submit" class="btn btn-success btn-block btn-lg">{% trans "Create Post" %}</button>
+            </form>
 
-{#        <form role="form" method="post" action="{% url "client_signup" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>#}
-        <form role="form" method="post" action="{% url "post_new" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
-            <legend>{% trans "New Post" %}</legend>
-            {% csrf_token %}
-            {{ form|bootstrap }}
-            {% if redirect_field_value %}
-            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-            {% endif %}
-            <button type="submit" class="btn btn-success btn-block btn-lg">{% trans "Create Post" %}</button>
-        </form>
-{##}
-{#        <form method="POST" action="{% url 'post_new' %}">#}
-{#            {% csrf_token %}#}
-{#            {{ form|bootstrap }}#}
-{#            <input type="submit" value="Submit">#}
-{#        </form>#}
-{##}
-        <br><br>&nbsp;&nbsp;&nbsp;&nbsp; <a href="{% url 'post_new' %}">Create New Post</a>
+        {% endif %}
     </div>
 {% endblock %}

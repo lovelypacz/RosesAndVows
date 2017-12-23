@@ -73,8 +73,9 @@ class ProfileView(FormView):
                                       tel_no=tel_no, user_id=self.id)
                     profile.save()
                     # return HttpResponseRedirect('/')
-                    return redirect(request, '/', context_instance=RequestContext(request))
+                    # return redirect(request, '/', context_instance=RequestContext(request))
                     # return redirect('home.html')
+                    return redirect('/')
                 else:
                     profile = Profile.objects.get(user_id=self.id)
                     profile.business_name = business_name
