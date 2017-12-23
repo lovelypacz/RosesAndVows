@@ -38,9 +38,9 @@
                         <li><a href="{% url 'account_logout'  %}">Logout</a></li>
                     {% endif %}
                 {% else %}
-                    <li><a href="{% url 'account_login' %}" class="hidden-xs">Login</a></li>
+                    <li><a href="{% url 'account_login' %}">Login</a></li>
                     <li><a> | </a></li>
-                    <li><a href="{% url 'client_signup' %}" class="hidden-xs"><span class="register"> Register</span></a></li>
+                    <li><a href="{% url 'client_signup' %}"><span class="register"> Register</span></a></li>
                 {% endif %}
 			</ul>
 	</div>
@@ -54,7 +54,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand logo" href="{% url 'home' %}"><img src="{% static 'img/logo1.png' %}" alt="logo"></a>
+				<a class="navbar-brand logo" href="{% url 'home' %}"><img src="{% static 'img/final_logo.jpg' %}" alt="logo"></a>
 			</div>
 		</div>
 		<div class="collapse navbar-collapse" id="upmenu">
@@ -72,9 +72,9 @@
 				<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Promos<span class="caret"></span></a>
 						<ul class="dropdown-menu dropdowncostume">
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
+							<li><a href="#">Limited Sale</a></li>
+							<li><a href="#">December Sale</a></li>
+							<li><a href="#">January Deals</a></li>
 						</ul>
 				</li>
                 <li><a href="#">About Us</a> </li>

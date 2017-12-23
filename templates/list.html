@@ -1,7 +1,7 @@
 {% extends 'site_base.html' %}
 
 {% block body %}
-    <div class="container" style="margin-left: 270px;">
+    <div class="container" style="margin-left: 250px; margin-top: 120px;">
         <h3>List of Organizers!</h3>
         {% for user in object_list %}
             {% if user != request.user and user.groups.all.0.name == "Coordinator"%}

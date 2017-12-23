@@ -110,20 +110,20 @@ DATABASES = {
     #     # 'HOST': '',
     #     # 'PASSWORD': '',
     # }
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'rav',
-    #     'USER': 'root',
-    #     'HOST': 'localhost',
-    #     'PASSWORD': '',
-    # }
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'RosesAndVowsCdo$rav',
-        'USER': 'RosesAndVowsCdo',
-        'PASSWORD': 'FourthHarmony',
-        'HOST': 'RosesAndVowsCdo.mysql.pythonanywhere-services.com',
+        'NAME': 'rav',
+        'USER': 'root',
+        'HOST': 'localhost',
+        'PASSWORD': '',
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'RosesAndVowsCdo$rav',
+    #     'USER': 'RosesAndVowsCdo',
+    #     'PASSWORD': 'FourthHarmony',
+    #     'HOST': 'RosesAndVowsCdo.mysql.pythonanywhere-services.com',
+    # }
 }
 
 # Password validation

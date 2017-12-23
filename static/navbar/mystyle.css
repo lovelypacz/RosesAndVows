@@ -53,10 +53,10 @@
     display: inline-block;
     letter-spacing: 1px;
     font-family: 'Lobster Two', serif;
-    font-size: 13pt;
+    font-size: 10px;
     color: #E7E7E7;
     margin-bottom: 0;
-    padding-left: 20%;
+    padding-left: 18%;
 }
 
 .givusacall > li {
@@ -67,10 +67,10 @@
     list-style-type: none;
     display: inline-block;
     font-family: 'Lobster Two', cursive;
-    font-size: 13pt;
+    font-size: 10px;
     color: #E7E7E7;
     margin-bottom: 0;
-    padding-left: 20%;
+    padding-left: 18%;
 }
 
 .logreg > li {
@@ -90,42 +90,47 @@
 
 @media screen and (max-width: 825px) {
     .socialicon {
-        padding-left: 5%;
+        font-size: 9px;
+        padding-left: 10%;
     }
 
     .givusacall {
-        padding-left: 15%;
+        font-size: 9px;
+        padding-left: 12%;
+    }
+    .logreg{
+        font-size: 9px;
+        padding-left: 12%;
     }
 }
 
 @media screen and (max-width: 555px) {
     .givusacall {
-        padding-left: 10%;
+        font-size: 9px;
+        padding-left: 2%;
     }
 
     .logreg {
-        padding-left: 13%;
+        font-size: 9px;
+        padding-left: 2%;
     }
 }
 
 @media screen and (max-width: 440px) {
-    .givusacall {
-        padding-left: 3%;
-        font-size: 11px;
-    }
-
-    .logreg {
-        padding-left: 8%;
-        font-size: 11px;
-    }
-
-    .socialicon > li {
-        font-size: 11px;
-    }
-
-    .socialicon {
-        padding-left: 0;
-    }
+	.givusacall{
+	    padding-left: 1%;
+	    font-size: 7px;
+}
+    .logreg{
+		padding-left: 3%;
+		font-size: 7px;
+}
+    .socialicon>li{
+	    font-size: 7px;
+}
+    .socialicon{
+	    padding-left: 0;
+}
 }
 
 /*----------------------End Header --------------------*/
