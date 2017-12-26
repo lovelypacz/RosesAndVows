@@ -1,23 +1,11 @@
-{#{%  extends 'home.html' %}#}
+{%  extends 'site_base.html' %}
+
 {%  load staticfiles %}
-
 {% load i18n %}
-{% block content %}
 {% load bootstrap %}
-    <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="{% static 'css/base.min.css' %}">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="{% static 'css/dash-style.css' %}">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<header>
-        {% include '_navbar.html' %}
-    </header>
-    <br><br><br><br><br><br><br><br><br><br>
-    <div class="post_list">
+{% block body %}
+    <div class="post_list" style="margin-top: 130px;">
         {% if isPosted %}
             <h1>Your post is successfully saved!</h1>
             <br><br><h2><a href="{% url 'post_new' %}">Create New Post</a></h2>

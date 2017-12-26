@@ -1,18 +1,21 @@
+{% extends 'site_base.html' %}
+
 {% load i18n %}
-{% block content %}
 {% load bootstrap %}
 
-    <div class="post_list">
+{% block body %}
+    <div class="post_list" style="margin-top: 130px;">
 
         {% if posts.count == 0 %}
             <div><p>{% trans 'You still have not posted.' %}</p></div>
 
         {% else %}
-            <br><div><p>There are {{ posts.count }} posts.</p> </div>
+            <br>
+            <div><p>There are {{ posts.count }} posts.</p></div>
             {% for post in posts %}
                 <br>
                 {{ post.package_name }}
-{#                    {{ post }}#}
+                {#                    {{ post }}#}
                 <br>
             {% endfor %}
         {% endif %}
