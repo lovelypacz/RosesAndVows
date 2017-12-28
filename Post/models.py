@@ -16,7 +16,7 @@ class Post(models.Model):
     package_name = models.CharField(max_length=200)
     description = models.TextField()
 
-    category = models.CharField(max_length=20, choices=CATEGORY)
+    category = models.CharField(max_length=20, choices=CATEGORY, default='Wedding')
     image = models.ImageField(upload_to = 'package_images/', null=True, blank=True,)
     max_budget = models.IntegerField(default=0)
 

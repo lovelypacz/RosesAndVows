@@ -1,97 +1,43 @@
+{% extends 'site_base.html' %}
 {% load static %}
 {% load i18n %}
 
-<head>
-          <link rel="stylesheet" href="{% static 'css/base.min.css' %}">
+{% block body %}
 
-    <style>
-        .filter-border{
-            border-radius: 5px;
-            padding: 8px;
-            border: solid dimgray 1px;
+    <div class="container" style="margin-left: 250px; margin-top: 120px;">
+        <form role="form" method="get" action="{% url "search" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+            {% csrf_token %}
 
-        }
-        .filter-width{
-            width: 375px;
-        }
-        .filter-button{
-            background-color: black;
-            color: white;
-        }
+            <ul style="float: left; position: relative;">
+                <br><div><h3 class="" style="position: relative;">Search Filter</h3></div><br>
+                <select name="category" class="filter-border filter-width">
+                    <option value="Wedding">Wedding</option>
+                    <option value="Debut">Debut</option>
+                    <option value="Birthday">Birthday</option>
+                    <option value="Thanksgiving">Thanksgiving</option>
+                    <option value="">All</option>
+                </select>
+                <input type="number" min="0" disabled name="budget" placeholder="BUDGET LIMIT" class="filter-border filter-width">
+                <input type="text" name="businessName" placeholder="BUSINESS NAME" class="filter-border filter-width">
+                <button type="submit" class="btn btn-success btn-block btn-lg">{% trans "Filter" %}</button>
 
-        .filter{
+            </ul>
+        </form>
+    </div>
 
-        }
-
-        .search-results{
-            float: left;
-            position: relative;
-        }
-
-        .image-crop{
-            width: 50%;
-            height: 50%;
-
-        }
-
-    </style>
-</head>
-<header>
-    {% include '_navbar.html' %}
-</header>
-<body>
-<br><br><br><br><br>
-
-{% block extra %}
-     <div class="container-fluid">
-        <div class="">
-            <form role="form" method="get" action="{% url "search" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
-                {% csrf_token %}
-
-                <ul style="float: left; position: relative;">
-                    <br><div><h3 class="" style="position: relative;">SEARCH FILTER</h3></div><br>
-                    <select name="category" class="filter-border filter-width">
-                        <option value="Wedding">Wedding</option>
-                        <option value="Debut">Debut</option>
-                        <option value="Birthday">Birthday</option>
-                        <option value="Thanksgiving">Thanksgiving</option>
-                        <option value="">All</option>
-                    </select>
-{#                    <br><br><input type="text" name="location" placeholder="LOCATION" class="filter-border filter-width">#}
-        {#            <br><br><input type="text" name="Budget Range" placeholder="BUDGET RANGE" class="filter">TO<input type="text" name="BUDGET RANGE" placeholder="BUDGET RANGE" class="filter">#}
-                    <input type="number" min="0" disabled name="budget" placeholder="BUDGET LIMIT" class="filter-border filter-width">
-                    <input type="text" name="businessName" placeholder="BUSINESS NAME" class="filter-border filter-width">
-    {#                <br><br><input type="submit" name="Filter" value="FILTER" class="filter-border filter-width filter-button">#}
-                    <button type="submit" class="btn btn-success btn-block btn-lg">{% trans "Filter" %}</button>
-
-                </ul>
-            </form>
-
-
-        </div>
-
+    <div class="container" style="margin-left: 250px; margin-top: 120px;">
+        <ul style="float: left; position: relative;">
+            <h3 style="position: relative;"><p>Search Results<br></p></h3>
+            {% if posts.count == 0 or not posts %}
+                <br><h3>No post is found that matches your query.</h3>
+            {% else %}
+                {% for post in posts %}
+                    <li style="list-style: none; float: left; position: relative; padding: 20px;"><h3 style="color: gray;">{{ post.package_name }}</h3>
+                        <a href="#" style=""><img src="{% static post.image %}" style="height: 250px; width: 250px;" alt="{{ post.package_name }}"/></a>{# <li style="float:left;"></li> #}
+                    </li>
+                {% endfor %}
+            {% endif %}
+        </ul>
     </div>
 
 {% endblock %}
-{#DAPAT SA POST_LIST NIMO ISULOD ANG RESULTS ARON DLI GUBOT#}
-{#{% block content %}#}
-{#    {% include 'Post/post_list.html' %}#}
-{#{% endblock %}#}
-
-{% block results %}
-<ul style="float: left; position: relative;">
-                <h3 style="position: relative;"><p>SEARCH RESULTS . . .<br></p></h3>
-                {% if posts.count == 0 %}
-                    <br><h3>No post is found that matches your query.</h3>
-                {% else %}
-                    {% for post in posts %}
-                        <li style="list-style: none; float: left; position: relative; padding: 20px;"><h3 style="color: gray;">{{ post.package_name }}</h3>
-                            <a href="#" style=""><img src="{% static post.image %}" style="height: 250px; width: 250px;" alt="{{ post.package_name }}"/></a>{# <li style="float:left;"></li> #}
-                        </li>
-                    {% endfor %}
-                {% endif %}
-            </ul>
-{% endblock %}
-
-
-</body>
