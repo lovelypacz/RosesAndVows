@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import User, Group, Post
+from django.contrib.auth.models import User, Group
 
 from django.db.models import Q
 from django import forms
