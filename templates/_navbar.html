@@ -63,10 +63,10 @@
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle"	data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories<span class="caret"></span></a>
 					<ul class="dropdown-menu dropdowncostume">
-						<li><a href="{% url 'show' %}">Wedding</a></li>
-						<li><a href="{% url 'show' %}">Debuts</a></li>
-						<li><a href="{% url 'show' %}">Thanksgiving</a></li>
-						<li><a href="{% url 'show' %}">Other Parties</a></li>
+						<li><a href="{% url 'search' %}">Wedding</a></li>
+						<li><a href="{% url 'search' %}">Debuts</a></li>
+						<li><a href="{% url 'search' %}">Thanksgiving</a></li>
+						<li><a href="{% url 'search' %}">Other Parties</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
@@ -77,6 +77,7 @@
 							<li><a href="#">January Deals</a></li>
 						</ul>
 				</li>
+                <li><a href="{% url 'show' %}">Organizers</a> </li>
                 <li><a href="#">About Us</a> </li>
                 <li><a href="#">Contact Us</a> </li>
 			</ul>

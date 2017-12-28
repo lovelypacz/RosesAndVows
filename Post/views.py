@@ -76,7 +76,7 @@ def search(request):
         # try:
         #     budget = int(request.GET.get('budget', 0))
         # except ValueError:
-        #     pass  # or whatever
+        #     pass  #
 
         category = request.GET.get('category', 'Wedding')
         print('GET businessName : {}\nGET category : {}' .format(businessName, category))
