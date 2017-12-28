@@ -31,7 +31,7 @@ from Client.views import SignupView as client_signupview
 # from Coordinator.views import SignupView as coo_signupview
 from RosesAndVows import views
 from Profile.views import ProfileView
-from Post.views import post_list, post_new, search
+from Post.views import post_list, post_new, search, post_detail
 
 from account.views import SettingsView, DeleteView
 
@@ -43,6 +43,7 @@ urlpatterns = [
     url(r'^account/login/profile/posts/$', post_list, name='posts'),
     url(r'^account/login/profile/posts/create/$', post_new, name='post_new'),
     url(r'^account/login/profile/posts/list/search/', search, name='search'),
+    url(r'^account/login/profile/posts/list/search/(?P<id>\d+)/$', post_detail, name='post_detail'),
     # url(r'^account/login/profile/posts/create/', post_new, name='post_new'),
     # url(r'^account/login/profile/posts/(?P<id>\d+)/', post_list, name='posts'),
 

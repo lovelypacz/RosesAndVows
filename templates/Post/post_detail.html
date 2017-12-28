@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'site_base.html' %}
 
-</body>
-</html>
+{% load i18n %}
+{% load bootstrap %}
+{% load staticfiles %}
+
+{% block body %}
+    <div class="container" style="margin-left:250px; margin-top: 130px;">
+        <img src="{% static post.image %}" style="height: 250px; width: 250px;" alt="{{ post.package_name }}" />
+        <h2>Package Name </h2><h3>{{ post.package_name }}</h3>
+        <h2>Organizer </h2><h3>{{ post.author }}</h3>
+        <h2>Description </h2><br><h3>{{ post.description }}</h3><br><br>
+        {% if user.is_authenticated and user.groups.all.0.name == "Client" %}
+            <a href="{% url 'site' id=user.pk %}"><h3>Message the Organizer</h3></a>
+        {% else %}
+            <a href="{% url 'account_login' %}"><h3>Login to enable the chat feature.</h3></a>
+        {% endif %}
+    </div>
+{% endblock %}
