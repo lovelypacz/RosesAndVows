@@ -37,8 +37,8 @@ def post_new(request):
             post.published_date = timezone.now()
             if request.FILES['image']:
                 post.image = request.FILES['image']
-            if request.budget:
-                post.max_budget = request.budget
+            # if request.max_budget:
+                # post.max_budget = request.max_budget
             posts = Post.objects.filter(author=post.author)
             # posts = Post.objects.get(author=request.user)
             for package in posts:
@@ -54,8 +54,8 @@ def post_new(request):
         form = PostForm()
     return render(request, 'Post/post_new.html', {'form': form, 'isPosted' : isPosted, 'isPostedStr' : isPostedStr})
 
-def post_edit(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+def post_edit(request, id):
+    post = get_object_or_404(Post, pk=id)
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
@@ -63,10 +63,10 @@ def post_edit(request, pk):
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
-            return redirect('Post/post_detail', pk=post.pk)
+            return redirect('Post/post_detail', id=post.pk)
     else:
         form = PostForm(instance=post)
-    return render(request, 'Post/post_edit.html', {'form': form})
+        return render(request, 'Post/post_edit.html', {'form': form, 'id':post.pk})
 
 def search(request):
     posts = Post.objects.all()

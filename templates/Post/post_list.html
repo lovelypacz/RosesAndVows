@@ -4,17 +4,17 @@
 {% load bootstrap %}
 
 {% block body %}
-    <div class="post_list" style="margin-top: 130px;">
+    <div class="container" style="margin-left: 250px; margin-top: 150px;">
 
         {% if posts.count == 0 %}
-            <div><p>{% trans 'You still have not posted.' %}</p></div>
+            <div><p>{% trans 'You do not have any post.' %}</p></div>
 
         {% else %}
             <br>
             <div><p>There are {{ posts.count }} posts.</p></div>
             {% for post in posts %}
                 <br>
-                {{ post.package_name }}
+                {{ post.package_name }} <h3><a href="{% url 'post_edit' id=post.pk %}">Edit Post</a></h3>
                 {#                    {{ post }}#}
                 <br>
             {% endfor %}

@@ -2,13 +2,13 @@
 {% load i18n %}
 {% load bootstrap %}
 
-{% block content %}
+{% block body %}
 
     <div class="post_edit">
-        <form method="POST" action="{% url 'post_new' %}">
+        <form method="POST" action="{% url 'post_edit' id=request.pk %}">
             {% csrf_token %}
             {{ form|bootstrap }}
-            <button type="submit" class="btn btn-success btn-block btn-lg">{% trans "Create Post" %}</button>
+            <button type="submit" class="btn btn-success btn-block btn-lg">{% trans "Edit Post" %}</button>
         </form>
     </div>
 {% endblock %}
