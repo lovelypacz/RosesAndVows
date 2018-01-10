@@ -215,7 +215,8 @@ THEME_CONTACT_EMAIL = 'inquiries@rosesandvows.com'
 # AUTH_USER_MODEL = 'Coordinator.MyUser'
 
 DATETIME_FORMAT = "d.m.Y H:i:s"
-CHAT_WS_SERVER_HOST = 'rosesandvowscdo.pythonanywhere.com'
+# CHAT_WS_SERVER_HOST = 'rosesandvowscdo.pythonanywhere.com'
+CHAT_WS_SERVER_HOST = ''
 CHAT_WS_SERVER_PORT = 5002
 CHAT_WS_SERVER_PROTOCOL = 'ws'
 
