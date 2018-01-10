@@ -6,7 +6,7 @@
 
 {% block body %}
     <div class="container" style="margin-left:250px; margin-top: 130px;">
-        <img src="{% static post.image %}" style="height: 250px; width: 250px;" alt="{{ post.package_name }}" />
+        <img src="{{ post.image.url }}" style="height: 250px; width: 250px;" alt="{{ post.package_name }}" />
         <h2>Package Name </h2><h3>{{ post.package_name }}</h3>
         <h2>Organizer </h2><h3>{{ post.author }}</h3>
         <h2>Description </h2><br><h3>{{ post.description }}</h3><br><br>

@@ -17,7 +17,7 @@ class Post(models.Model):
     description = models.TextField()
 
     category = models.CharField(max_length=20, choices=CATEGORY, default='Wedding')
-    image = models.ImageField(upload_to = 'package_images', null=True, blank=True,)
+    image = models.ImageField(upload_to = 'package_images/', null=True, blank=True,)
     max_budget = models.IntegerField(default=0)
 
     created_date = models.DateTimeField(default=timezone.now)

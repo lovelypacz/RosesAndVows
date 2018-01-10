@@ -33,7 +33,7 @@
             {% else %}
                 {% for post in posts %}
                     <li style="list-style: none; float: left; position: relative; padding: 20px;"><h3 style="color: gray;">{{ post.package_name }}</h3>
-                        <a href="{% url 'post_detail' id=post.pk %}" style=""><img src="{% static post.image %}" style="height: 250px; width: 250px;" alt="{{ post.package_name }}"/></a>{# <li style="float:left;"></li> #}
+                        <a href="{% url 'post_detail' id=post.pk %}" style=""><img src="{{ post.image.url }}" style="height: 250px; width: 250px;" alt="{{ post.package_name }}"/></a>{# <li style="float:left;"></li> #}
                     </li>
                 {% endfor %}
             {% endif %}
