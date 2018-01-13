@@ -1,28 +1,19 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from django.contrib.auth import get_user_model
-from django.contrib.auth.models import User, Group
-
-from django.db.models import Q
-from django import forms
-from functools import reduce
-
-from django.views.generic import ListView
-
+from django.contrib.auth.models import User
 from .models import Post
 from .forms import PostForm
 
-import operator #, bpy
 
-# Create your views here.
 def post_list(request):
-    #posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     posts = Post.objects.all()
     return render(request, 'Post/post_list.html', {'posts': posts})
+
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'Post/post_detail.html', {'post': post})
+
 
 def post_new(request):
     isPostedStr = ""
@@ -37,10 +28,7 @@ def post_new(request):
             post.published_date = timezone.now()
             if request.FILES['image']:
                 post.image = request.FILES['image']
-            # if request.max_budget:
-                # post.max_budget = request.max_budget
             posts = Post.objects.filter(author=post.author)
-            # posts = Post.objects.get(author=request.user)
             for package in posts:
                 if package.package_name == post.package_name:
                     isPostedStr = "The package you are trying to save is already existing!"
@@ -48,11 +36,10 @@ def post_new(request):
             if isPostedStr == "":
                 post.save()
                 isPosted = True
-            # return render(request, 'Post/post_new.html', {'isPosted' : isPosted})
-
     else:
         form = PostForm()
     return render(request, 'Post/post_new.html', {'form': form, 'isPosted' : isPosted, 'isPostedStr' : isPostedStr})
+
 
 def post_edit(request, id):
     post = get_object_or_404(Post, pk=id)
@@ -68,16 +55,11 @@ def post_edit(request, id):
         form = PostForm(instance=post)
         return render(request, 'Post/post_edit.html', {'form': form, 'id':post.pk})
 
+
 def search(request):
     posts = Post.objects.all()
     if request.method == "GET":
-        businessName = request.GET.get('businessName', "")#('businessName', False)
-        # budget = 0
-        # try:
-        #     budget = int(request.GET.get('budget', 0))
-        # except ValueError:
-        #     pass  #
-
+        businessName = request.GET.get('businessName', "")
         category = request.GET.get('category', 'Wedding')
         print('GET businessName : {}\nGET category : {}' .format(businessName, category))
 
@@ -92,20 +74,15 @@ def search(request):
             bizIndex = 0
             for business in businesses:
                 if bizIndex == 0:
-                    posts = list(Post.objects.filter(author=business.pk).filter(category__contains=category))#.filter(max_budget__lte=budget))
+                    posts = list(Post.objects.filter(author=business.pk).filter(category__contains=category))
                     print('\nIndex number: {}, the first post {}'.format(bizIndex, posts))
                 else:
-                    posts.append(Post.objects.filter(author=business.pk).filter(category__contains=category))#.filter(max_budget__lte=budget))
+                    posts.append(Post.objects.filter(author=business.pk).filter(category__contains=category))
                     print('\nIndex number: {}, iyang mga posts: {}' .format(bizIndex, posts))
                 bizIndex+=1
         else:
-            posts = list(Post.objects.filter(category__contains=category))#.filter(max_budget__lte=budget))
+            posts = list(Post.objects.filter(category__contains=category))
     print("Rendering the requested template ... {}" .format(posts))
     return render(request, 'Post/search.html', {'posts' : posts})
 
-
-
-def post_detail(request, id):
-    post = get_object_or_404(Post, id=id)
-    return render(request, 'Post/post_detail.html', {'post': post})
 

@@ -1,9 +1,9 @@
-from braces.views import LoginRequiredMixin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User, Group
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
-
+from Profile.models import Profile
+from Coordinator.forms import ProfileForm
 from .forms import PasswordResetTokenForm, ChangePasswordForm
 
 import account.forms
@@ -11,7 +11,6 @@ import account.views
 
 
 class LoginView(account.views.LoginView):
-    # template_name = '../templates_/../templates/login.html'
     template_name = 'login.html'
     form_class = account.forms.LoginEmailForm
 
@@ -39,11 +38,11 @@ class PasswordResetTokenView(account.views.PasswordResetTokenView):
     template_name_fail = "password_reset_token_fail.html"
 
     def form_valid(self, form):
+        global trimmed_email
         for x in range(len(self.get_user().email)):
             c = self.get_user().email[x]
             if c == '@':
                 trimmed_email = self.get_user().email[0:x]
-                # print(trimmed_email)
 
         if self.get_user().first_name.lower() in form.cleaned_data['password'].lower():
             # messages.add_message(self.request, messages.ERROR, 'Your password must not be too similar to your first name!')
@@ -73,11 +72,11 @@ class ChangePasswordView(account.views.ChangePasswordView):
     form_class = ChangePasswordForm
 
     def form_valid(self, form):
+        global trimmed_email
         for x in range(len(self.get_user().email)):
             c = self.get_user().email[x]
             if c == '@':
                 trimmed_email = self.get_user().email[0:x]
-                # print(trimmed_email)
 
         if self.get_user().first_name.lower() in form.cleaned_data['password_new'].lower():
             # messages.add_message(self.request, messages.ERROR, 'Your password must not be too similar to your first name!')
@@ -104,46 +103,56 @@ class ChangePasswordView(account.views.ChangePasswordView):
 
 
 def home(request):
-    return render(request, 'body.html')
+    form = ProfileForm
+    print('Request: {}' .format(request.user))
+    if request.user is not None and not request.user.is_anonymous:
+        logged = User.objects.get(email=request.user)
+        print('Request.user : {}' .format(request.user))
+        print('Logged: {}' .format(logged.first_name))
+        user_group = Group.objects.get(user=logged.id)
+        try:
+            user_profile = Profile.objects.get(user_id=request.user.id)
+        except Profile.DoesNotExist:
+            user_profile= None #User profile has not been created.
+        print('Userprofile: {}' .format(user_profile))
+        print('Usergroup: {}' .format(user_group.name))
+        if user_group.name == "Coordinator" and user_profile is None:
+            print('User is a coordinator.')
+            return render(request, 'edit_profile.html', {'form':form})
+        else:
+            return render(request, 'body.html')
+
+    else:
+        return render(request, 'body.html')
 
 
 def signup(request):
     return render(request, 'Client/signup.html')
 
 
+def coordinator_signup(request):
+    return render(request, 'Coordinator/signup.html')
+
+
 def about_us(request):
     return render(request, 'aboutus.html')
 
 
-# def dashboard_eo(request, id):
-#     profile = get_object_or_404(User, id=id)
-#     profile_group_user = Group.objects.get(user=id)
-#     return render(request, '../templates_/../templates/dashboard.html',
-#                   {'profile': profile, 'profile_group_user': profile_group_user})
-#
-#
-# def dashboard_client(request, id):
-#     profile = get_object_or_404(User, id=id)
-#     profile_group_user = Group.objects.get(user=id)
-#     return render(request, '../templates_/../templates/dashboard-2.html',
-#                   {'profile': profile, 'profile_group_user': profile_group_user})
+def Root_Signup(request):
+    return render(request, 'root_signup.html')
 
 
 def show_profile(request, id):
     profile = get_object_or_404(User, id=id)
     profile_group_user = Group.objects.get(user=id)
-    # return render(request, 'profile.html',
-    #               {'profile': profile, 'profile_group_user': profile_group_user})
+    profile_profile = Profile.objects.get(user_id=id)
 
-    if profile_group_user.name == 'Coordinators':
-        # return render(request, '../templates_/../templates/dashboard.html', {'profile': profile, 'profile_group_user': profile_group_user})
-        return render(request, 'Coordinator/dashboard.html', {'profile': profile, 'profile_group_user': profile_group_user})
+    if profile_group_user.name == 'Coordinator':
+        return render(request, 'Coordinator/dashboard.html', {'profile': profile, \
+                                                              'profile_group_user': profile_group_user, \
+                                                              'profile_profile': profile_profile})
     else:
-        #     return render(request, '../templates_/../templates/dashboard-2.html',{'profile': profile, 'profile_group_user': profile_group_user})
         return render(request, 'Client/dashboard-2.html', {'profile': profile, 'profile_group_user': profile_group_user})
-
-        # return render(request, '../templates_/../templates/profile.html',
-        #               {'profile': profile, 'profile_group_user': profile_group_user})
 
 
 class UserListView(generic.ListView):

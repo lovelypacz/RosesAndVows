@@ -17,6 +17,7 @@
 {#        {{ form }}#}
 {#        <button type="submit">{% trans 'Edit Profile' %}</button>#}
 {#    </form>#}
+    <h1>Edit Your Profile</h1>
     <form method="POST" action="{% url 'edit_profile' id=user.pk %}" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form|bootstrap }}

@@ -27,7 +27,6 @@ SECRET_KEY = '5t%$^br^0$+ns4wi%x$-3iq3m_7^jr0-rw^p6kx2jjk^g2ir*c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['192.168.12.39', '127.0.0.1', ]
 ALLOWED_HOSTS = ['192.168.12.39', 'localhost', '127.0.0.1', 'rosesandvowscdo.pythonanywhere.com' ]
 
 # Application definition
@@ -40,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    # 'django.contrib.pillow',
 
     'Coordinator',
     'Client',
@@ -51,10 +49,6 @@ INSTALLED_APPS = [
     'pinax_theme_bootstrap',
     'bootstrapform',
     'django_inlinecss',
-
-    # 'social_django',
-
-    # 'south',
     'django_private_chat',
 ]
 
@@ -70,7 +64,6 @@ MIDDLEWARE = [
     'account.middleware.LocaleMiddleware',
     'account.middleware.TimezoneMiddleware',
     'account.middleware.ExpiredPasswordMiddleware',
-    # 'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'RosesAndVows.urls'
@@ -89,9 +82,6 @@ TEMPLATES = [
 
                 'account.context_processors.account',
                 'pinax_theme_bootstrap.context_processors.theme',
-
-                # 'social_django.context_processors.backends',  # <--
-                # 'social_django.context_processors.login_redirect', # <--
             ],
         },
     },
@@ -103,13 +93,6 @@ WSGI_APPLICATION = 'RosesAndVows.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, "db.sqlite3"),
-    #     # 'USER': '',
-    #     # 'HOST': '',
-    #     # 'PASSWORD': '',
-    # }
     # 'default': {
     #     'ENGINE': 'django.db.backends.mysql',
     #     'NAME': 'rav',
@@ -145,8 +128,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTHENTICATION_BACKENDS = (
-    # 'social_core.backends.twitter.TwitterOAuth',
-    # 'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
     'account.auth_backends.EmailAuthenticationBackend',
 
@@ -168,7 +149,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-#
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -176,14 +156,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
 SITE_ID = 1
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 ACCOUNT_HOOKSET = 'RosesAndVows.hooks.AccountDefaultHookSet'
-
 ACCOUNT_EMAIL_UNIQUE = True
 ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
@@ -192,31 +168,16 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_USER_DISPLAY = lambda user: user.email
 ACCOUNT_USE_AUTHENTICATE = True
 
-# ACCOUNT_SIGNUP_REDIRECT_URL = 'welcome'
-
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'madaddadam24@gmail.com'
-EMAIL_HOST_PASSWORD = '24madaddadam'
+EMAIL_HOST_USER = 'rosesandvows2017@gmail.com'
+EMAIL_HOST_PASSWORD = 'SoftwareEngineering'
 EMAIL_USE_TLS = True
-# EMAIL_USE_SSL = False
-# EMAIL_TIMEOUT = None
-# EMAIL_SSL_KEYFILE = None
-# EMAIL_SSL_CERTFILE = None
-
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 THEME_CONTACT_EMAIL = 'inquiries@rosesandvows.com'
 
-# print(ALLOWED_HOSTS)
-# LOGIN_URL = 'account/login/'
-# LOGOUT_URL = 'account_logout'
-# LOGIN_REDIRECT_URL = 'account/login/'
-# AUTH_USER_MODEL = 'Coordinator.MyUser'
-
 DATETIME_FORMAT = "d.m.Y H:i:s"
-# CHAT_WS_SERVER_HOST = 'rosesandvowscdo.pythonanywhere.com'
 CHAT_WS_SERVER_HOST = ''
 CHAT_WS_SERVER_PORT = 5002
 CHAT_WS_SERVER_PROTOCOL = 'ws'
-

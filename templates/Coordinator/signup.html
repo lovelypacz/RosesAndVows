@@ -5,14 +5,14 @@
 {% load i18n %}
 {% load bootstrap %}
 
-{% block head_title %}{% trans "Applicant Signup" %}{% endblock %}
+{% block head_title %}{% trans "Coordinator Signup" %}{% endblock %}
 
 {% block body %}
     <div class="row">
         <div class="col-sm-offset-2 col-sm-10">
             <div class="col-md-10" style="margin-top: 150px; margin-left: 50px;">
-                <form role="form" method="post" action="{% url "client_signup" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
-                    <legend>{% trans "SIGN UP" %}</legend>
+                <form role="form" method="post" action="{% url "coordinator_signup" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+                    <legend>{% trans "REGISTER BUSINESS" %}</legend>
                     {% csrf_token %}
                         {{ form|bootstrap }}
                     {% if redirect_field_value %}
@@ -26,11 +26,6 @@
                         {% trans "Already have an account?" %}  <strong><a href="{% urlnext 'account_login' %}">{% trans "Log in" %}</a></strong>
                     </small>
                 </p>
-                    <small>
-{#                        {% trans "Do you want to register your business? Email us at " %}  <strong>{% trans "rosesandvows@gmail.com" %}</strong>#}
-                        {% trans "Do you want to register your business?" %}  <strong><a href="{% urlnext 'coordinator_signup' %}">{% trans "Register Business" %}</a></strong>
-{#                        {% trans "Do you want to " %}  <strong><a href="{% urlnext 'coordinator_signup' %}">{% trans "register your business?" %}</a></strong>#}
-                    </small>
             </div>
             </div>
         </div>

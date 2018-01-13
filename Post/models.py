@@ -10,6 +10,7 @@ CATEGORY = (
     ('Thanksgiving', 'Thanksgiving'),
 )
 
+
 class Post(models.Model):
 
     author = models.ForeignKey('auth.User')
@@ -29,7 +30,6 @@ class Post(models.Model):
 
     def __str__(self):
         return self.package_name
-        # return self.title
 
 
 

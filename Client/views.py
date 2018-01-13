@@ -1,12 +1,10 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import HttpResponse
 from django.contrib.auth.models import Group
-
-from .forms import SignupForm
+from Client.forms import SignupForm
 
 import account.views
-import re
 
-# Create your views here.s
+
 def home(request):
     return HttpResponse('Home')
 
@@ -19,12 +17,6 @@ class SignupView(account.views.SignupView):
     def generate_username(self, form):
         username = form.cleaned_data['email']
         return username
-
-    #Save the email as the username without the extension
-    # def generate_username(self, form):
-    #     username_1 = form.cleaned_data['email']
-    #     username = re.findall('([^@]+)', username_1)
-    #     return username[0]
 
     def after_signup(self, form):
         self.create_profile(form)

@@ -3,18 +3,10 @@ from django.utils.translation import ugettext_lazy as _
 from django import forms
 from django.contrib.auth import get_user_model
 from django.core import exceptions
-import django.contrib.auth.password_validation as validators
-
 from Profile.models import Profile
 
 import account.forms
-
-
-#
-# GENDER_CHOICES = (
-#     ('Female', 'F'),
-#     ('Male', 'M'),
-# )
+import django.contrib.auth.password_validation as validators
 
 
 class SignupForm(account.forms.SignupForm):
@@ -49,20 +41,12 @@ class SignupForm(account.forms.SignupForm):
 
 
 class ProfileForm(forms.Form):
-    # pass
 
     class Meta:
         model = Profile
         fields = ['first_name', 'last_name', 'address', 'contact_no', ]
 
-        # fields = ['first_name', 'last_name', 'gender', 'address', 'contact_no', ]
-
-    # gender = forms.ChoiceField(choices=GENDER_CHOICES, required=False)
     first_name = forms.CharField(max_length=20)
     last_name = forms.CharField(max_length=20)
     address = forms.CharField(max_length=100)
     contact_no = forms.CharField(max_length=20)
-    # desired_salary = forms.IntegerField()
-    # class Meta:
-    #      model = Profile
-    #      fields = ['gender', 'contact_no', 'job_title', 'education', 'experience', 'desired_salary_range']

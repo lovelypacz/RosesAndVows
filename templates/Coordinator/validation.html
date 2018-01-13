@@ -1,0 +1,16 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Wait for Validation" %}{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-10" style="margin-left: 250px; margin-top: 120px;">
+            <h2>{% trans "Wait for Validation" %}</h2>
+
+            <p>{% blocktrans %}We are currently validating your entry. Please wait for the reply email. Thank you.{% endblocktrans %}</p>
+
+        </div>
+    </div>
+{% endblock %}
