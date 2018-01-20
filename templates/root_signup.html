@@ -5,17 +5,9 @@
 {% load bootstrap %}
 
 {% block body %}
-    <div class="row">
-        <div class="col-sm-offset-2 col-sm-10 custom_top">
-            <p class="custom_title">CREATE AN ACCOUNT</p>
-        </div>
-        <div class="col-md-offset-4 col-md-4">
-            <p class="custom_already">
-                {% trans "Already have an account?" %}  <strong><a href="{% urlnext 'account_login' %}">{% trans "Log in" %}</a></strong>
-            </p>
-        </div>
-        <div class="col-md-offset-1 col-md-10 custom_top">
-            <a href="{% url 'client_signup' %}" class="btn btn-lg btn-primary hire_btn"> I WANT TO HIRE EVENT ORGANIZERS </a>
+    <div class="row"></div>
+        <div class="col-md-offset-1 col-md-10" style="margin-top: 150px; margin-left:200px;">
+            <a href="{% url 'client_signup' %}" class="btn btn-lg btn-primary hire_btn" style="margin-right: 50px;"> I WANT TO HIRE EVENT ORGANIZERS </a>
             <a href="{% url 'coordinator_signup' %}" class="btn btn-lg btn-warning work_btn ">I WANT TO REGISTER MY BUSINESS </a>
         </div>
     </div>
