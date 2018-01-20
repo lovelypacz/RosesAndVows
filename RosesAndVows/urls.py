@@ -4,7 +4,7 @@ from django.conf.urls import url, include
 from django.views.generic import RedirectView
 from django.contrib import admin
 from .views import home, LoginView, signup, show_profile, PasswordResetTokenView, \
-    PasswordResetView, ConfirmEmailView, LogoutView, ChangePasswordView, about_us, Root_Signup, UserListView
+    PasswordResetView, ConfirmEmailView, LogoutView, ChangePasswordView, about_us, Root_Signup, userListView
 from Client.views import SignupView as client_signupview
 from Coordinator.views import SignupView as coo_signupview
 from Profile.views import ProfileView
@@ -14,6 +14,7 @@ from Coordinator.views import MySite
 
 
 urlpatterns = [
+
     url(r'^account/login/profile/posts/$', post_list, name='posts'),
     url(r'^account/login/profile/posts/(?P<id>\d+)/$', post_edit, name='post_edit'),
     url(r'^account/login/profile/posts/create/$', post_new, name='post_new'),
@@ -39,7 +40,9 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^favicon\.ico$', RedirectView.as_view(url='/static/favicon/favicon.ico')),
     url(r'^', include('django_private_chat.urls'), name='Chat'),
-    url(r'^list/', view=UserListView.as_view(), name='show'),
+    url(r'^list/', userListView, name='show'),
+
+    # url(r'^list/', view=UserListView.as_view(), name='show'),
     url(r'^dialogs/account/login/',LoginView.as_view()),
 ]
 

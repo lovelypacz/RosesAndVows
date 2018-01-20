@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.contrib.auth.models import User
+from Profile.models import Profile
 from .models import Post
 from .forms import PostForm
 
@@ -10,9 +11,10 @@ def post_list(request):
     return render(request, 'Post/post_list.html', {'posts': posts})
 
 
-def post_detail(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    return render(request, 'Post/post_detail.html', {'post': post})
+def post_detail(request, id):
+    post = get_object_or_404(Post, id=id)
+    profile = Profile.objects.get(user_id=post.author_id)
+    return render(request, 'Post/post_detail.html', {'post': post, 'profile': profile})
 
 
 def post_new(request):

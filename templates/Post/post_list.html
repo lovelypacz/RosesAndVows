@@ -6,12 +6,12 @@
 {% block body %}
     <div class="container" style="margin-left: 250px; margin-top: 150px;">
 
-        {% if posts.count == 0 %}
+        {% if posts|length == 0 %}
             <div><p>{% trans 'You do not have any post.' %}</p></div>
 
         {% else %}
             <br>
-            <div><p>There are {{ posts.count }} posts.</p></div>
+            <div><p>There are {{ posts|length }} posts.</p></div>
             {% for post in posts %}
                 <br>
                 {{ post.package_name }} <h3><a href="{% url 'post_edit' id=post.pk %}">Edit Post</a></h3>

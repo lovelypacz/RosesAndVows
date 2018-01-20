@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,18 +22,18 @@
     {% include '_navbar.html' %}
 </header>
 
-{% if profile_profile.is_validated == 1 and profile_profile.has_payed == 1 %}
+{% if profile_profile.is_validated == 1 and profile_profile.has_paid == 1 %}
     <div class="container">
         <div class="col-xl-4">
 
             <!-- ===== vCard Navigation ===== -->
             <div class="row w">
                 <div class="col-md-4">
-                    <img class="img-responsive" src="{% static 'mysite/img/avatar.jpg' %}" alt="">
+                    <img class="img-responsive" src="{{ profile_profile.cover_photo.url }}" alt="">
                     <ul class="nav nav-tabs nav-stacked" id="myTab">
                         <li class="active"><a href="#about">About</a></li>
                         <li><a href="#profile">Services</a></li>
-                        <li><a href="#portfolio">Gallery</a></li>
+{#                        <li><a href="#portfolio">Gallery</a></li>#}
                         {% if user.groups.all.0.name == "Client" or user.is_anonymous %}
                             <li><a href="#contact">Contact Us</a></li>
                         {% endif %}
@@ -45,12 +46,9 @@
 
                         <!-- ===== First Tab ===== -->
                         <div class="tab-pane active" id="about">
-                            <h3> {{ profile.first_name }} {{ profile.last_name }} </h3>
-                            {#                        <h5>Web Designer</h5>#}
+                            <h3> {{ profile_profile.business_name }} </h3>
                             <hr>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                            <p>Has been the industry's standard dummy text ever since the 1500s, when an unknown printer
-                                took a galley of type and scrambled it.</p>
+                            <p> {{ profile_profile.description }}</p>
                             <p class="pull-right red"><i class="icon-heart"></i></p>
                         </div><!-- tab about -->
 
@@ -59,66 +57,60 @@
                             {% if user.groups.all.0.name == "Coordinator" %}
                                 <div class="row">
                                     <div class="col-xs-6 centered">
-                                        <img class="img-responsive" src="{% static 'img/add.png' %}" alt="">
-                                        <a href="{% url 'post_new' %}" target=_blank><h6><i class="icon-link"></i> Add New
-                                            Services/Packages
-                                        </h6></a>
-                                    </div><!-- col-xs-6 -->
-                                    <div class="col-xs-6 centered">
-                                        <img class="img-responsive" src="{% static 'img/services.png' %}" alt="">
-                                        <a href="{% url 'posts' %}" target=_blank><h6><i class="icon-link"></i> Offered
-                                            Services </h6></a>
+{#                                        <img class="img-responsive" src="{% static 'img/services.png' %}" alt="">#}
+                                        {% if posts|length == 0 %}
+                                            <div><p>{% trans 'You do not have any post.' %}</p></div>
+                                        {% else %}
+                                            <br>
+                                            <div><p>There are {{ posts|length }} posts.</p></div>
+                                            {% for post in posts %}
+                                                <br><h3><a href="{% url 'post_detail' id=post.id %}">{{ post.package_name }}</a></h3><br>
+                                            {% endfor %}
+                                        {% endif %}
                                     </div><!-- col-xs-6 -->
                                 </div><!-- row -->
-
-                                <div class="row">
-                                    <br>
-                                    <div class="col-xs-6 centered">
-                                        <img class="img-responsive" src="{% static 'img/sale.jpg' %}" alt="">
-                                        <a href="#" target="_blank"><h6><i class="icon-link"></i> Special Offers </h6></a>
-                                    </div><!-- col-xs-6 -->
-                                </div>
                             {% else %}
                                 <div class="row">
                                     <div class="col-xs-6 centered">
-                                        <img class="img-responsive" src="{% static 'img/services.png' %}" alt="">
-                                        <a href="{% url 'posts' %}" target=_blank><h6><i class="icon-link"></i> Offered
-                                            Services </h6></a>
+{#                                        <img class="img-responsive" src="{% static 'img/services.png' %}" alt="">#}
+                                        {% if posts|length == 0 %}
+                                            <div><p>{% trans 'No packages available for the moment.' %}</p></div>
+                                        {% else %}
+                                            <br>
+                                            <div><p>There are {{ posts|length }} posts.</p></div>
+                                            {% for post in posts %}
+                                                <br><h3><a href="{% url 'post_detail' id=post.id %}">{{ post.package_name }}</a></h3><br>
+                                            {% endfor %}
+                                        {% endif %}
                                     </div><!-- col-xs-6 -->
-
-                                    <div class="col-xs-6 centered">
-                                        <img class="img-responsive" src="{% static 'img/sale.jpg' %}" alt="">
-                                        <a href="#" target="_blank"><h6><i class="icon-link"></i> Special Offers </h6></a>
-                                    </div><!-- col-xs-6 -->
-                                </div><!-- row -->
                             {% endif %}
                         </div><!-- /Tab Portfolio -->
 
-                        <!-- ===== Third Tab ===== -->
-                        <div class="tab-pane" id="portfolio">
-                            <div class="row">
-                                <div class="col-xs-6 centered">
-                                    <img class="img-responsive" src="{% static 'mysite/img/p01.png' %}" alt="">
-                                    <a href="#"><h6><i class="icon-link"></i> Album 1 </h6></a>
-                                </div><!-- col-xs-6 -->
-                                <div class="col-xs-6 centered">
-                                    <img class="img-responsive" src="{% static 'mysite/img/p02.png' %}" alt="">
-                                    <a href="#"><h6><i class="icon-link"></i> Album 2 </h6></a>
-                                </div><!-- col-xs-6 -->
-                            </div><!-- row -->
-
-                            <div class="row">
-                                <br>
-                                <div class="col-xs-6 centered">
-                                    <img class="img-responsive" src="{% static 'mysite/img/p03.png' %}" alt="">
-                                    <a href="#"><h6><i class="icon-link"></i> Album 3</h6></a>
-                                </div><!-- col-xs-6 -->
-                                <div class="col-xs-6 centered">
-                                    <img class="img-responsive" src="{% static 'mysite/img/p04.png' %}" alt="">
-                                    <a href="#"><h6><i class="icon-link"></i> Album 4</h6></a>
-                                </div><!-- col-xs-6 -->
-                            </div><!-- row -->
-                        </div><!-- /Tab Portfolio -->
+{#                        <!-- ===== Third Tab ===== -->#}
+{#                        <div class="tab-pane" id="portfolio">#}
+{#                            <div class="row">#}
+{#                                <div class="col-xs-6 centered">#}
+{#                                    <img class="img-responsive" src="{% static 'mysite/img/p01.png' %}" alt="">#}
+{#                                    <a href="#"><h6><i class="icon-link"></i> Album 1 </h6></a>#}
+{#                                </div><!-- col-xs-6 -->#}
+{#                                <div class="col-xs-6 centered">#}
+{#                                    <img class="img-responsive" src="{% static 'mysite/img/p02.png' %}" alt="">#}
+{#                                    <a href="#"><h6><i class="icon-link"></i> Album 2 </h6></a>#}
+{#                                </div><!-- col-xs-6 -->#}
+{#                            </div><!-- row -->#}
+{##}
+{#                            <div class="row">#}
+{#                                <br>#}
+{#                                <div class="col-xs-6 centered">#}
+{#                                    <img class="img-responsive" src="{% static 'mysite/img/p03.png' %}" alt="">#}
+{#                                    <a href="#"><h6><i class="icon-link"></i> Album 3</h6></a>#}
+{#                                </div><!-- col-xs-6 -->#}
+{#                                <div class="col-xs-6 centered">#}
+{#                                    <img class="img-responsive" src="{% static 'mysite/img/p04.png' %}" alt="">#}
+{#                                    <a href="#"><h6><i class="icon-link"></i> Album 4</h6></a>#}
+{#                                </div><!-- col-xs-6 -->#}
+{#                            </div><!-- row -->#}
+{#                        </div><!-- /Tab Portfolio -->#}
 
                         <!-- ===== Fourth Tab ===== -->
                         <div class="tab-pane" id="contact">
@@ -127,8 +119,13 @@
                             <div class="row">
                                 <div class="col-xs-6">
                                     <p class="sm"> Contact us for more queries! </p>
-                                    <a href="{% url 'dialogs_detail' username=profile.username %}" target="_blank">Chat
+                                    {%  if user.is_authenticated and user.groups.all.0.name == "Client" %}
+                                        <a href="{% url 'dialogs_detail' username=profile.username %}" target="_blank">Chat
                                         Now</a>
+                                    {% else %}
+                                        <a href="{% url 'account_login' %}" target="_blank">Login to enable the chat feature.</a>
+                                    {% endif %}
+
                                     {% block extra_js %}{% endblock extra_js %}
                                 </div><!-- col-xs-6 -->
 
@@ -140,23 +137,6 @@
                                 </div><!-- col-xs-6 -->
                             </div><!-- row -->
 
-                            <h4>Social Links</h4>
-                            <hr>
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <p class="sm">
-                                        <i class="icon-facebook"></i> - Vicky.Wallberg <br/>
-                                        <i class="icon-tumblr"></i> - Love-Vicky-Site
-                                    </p>
-                                </div><!-- col-xs-6 -->
-
-                                <div class="col-xs-6">
-                                    <p class="sm">
-                                        <i class="icon-dribbble"></i> - Vicoooria <br/>
-                                        <i class="icon-twitter"></i> - @BlackTie_co
-                                    </p>
-                                </div><!-- col-xs-6 -->
-                            </div><!-- row -->
                         </div><!-- Tab Contact -->
 
                     </div><!-- Tab Content -->
@@ -165,7 +145,7 @@
         </div><!-- col-lg-6 -->
     </div><!-- /.container -->
 {% else %}
-    <h1>Ooops! Something went wrong. Bayad ka muna beh :)</h1>
+    <h1>Ooops! Something went wrong. Please pay your subscription fee. Thank you.</h1>
 {% endif %}
 
     <div>

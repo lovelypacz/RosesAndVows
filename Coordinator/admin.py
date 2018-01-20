@@ -5,11 +5,12 @@ from django.utils.html import format_html
 from django.core.urlresolvers import reverse
 from Profile.models import Profile
 from django.conf.urls import url
+from django.core.mail import EmailMessage
 
 
 class ProfileAdmin(admin.ModelAdmin):
     model = Profile
-    list_display = ['get_username','business_name', 'get_active_status', 'is_validated', 'has_payed','account_actions']
+    list_display = ['get_username','business_name', 'get_active_status', 'is_validated', 'has_paid','account_actions']
 
     def get_username(self, obj):
         return User.objects.get(id=obj.user_id).first_name \
@@ -62,31 +63,41 @@ class ProfileAdmin(admin.ModelAdmin):
         user_profile = Profile.objects.get(user_id=account_id)
         user_profile.is_validated = 1
         user_profile.save()
+
+        email = EmailMessage('Notice from RosesAndVows', 'Your application for registration has been approved.', to=[User.objects.get(id=account_id).email])
+        email.send()
+
         return redirect('/admin/Profile/profile')
 
     def process_deactivate(self, request, account_id, *args, **kwargs):
         user_profile = User.objects.get(id=account_id)
         user_profile2 = Profile.objects.get(user_id=account_id)
         user_profile.is_active = 0
-        user_profile2.has_payed = 0
+        user_profile2.has_paid = 0
         user_profile.save()
         user_profile2.save()
+
+        email = EmailMessage('Notice from RosesAndVows', 'Your account has been deactivated due to unpaid charges.', to=[User.objects.get(id=account_id).email])
+        email.send()
         return redirect('/admin/Profile/profile')
 
     def process_activate(self, request, account_id, *args, **kwargs):
         user_profile = User.objects.get(id=account_id)
         user_profile2 = Profile.objects.get(user_id=account_id)
         user_profile.is_active = 1
-        user_profile2.has_payed = 1
+        user_profile2.has_paid = 1
         user_profile.save()
         user_profile2.save()
+
+        email = EmailMessage('Notice from RosesAndVows', 'Your account has been successfully activated.', to=[User.objects.get(id=account_id).email])
+        email.send()
         return redirect('/admin/Profile/profile')
 
     account_actions.short_description = 'Account Actions'
     account_actions.allow_tags = True
 
     # Filtering on side - for some reason, this works
-    list_filter = ['is_validated', 'has_payed']
+    list_filter = ['is_validated', 'has_paid']
 
 
 admin.site.register(Profile, ProfileAdmin)

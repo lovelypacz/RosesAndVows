@@ -50,7 +50,7 @@ class SignupForm(account.forms.SignupForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['business_name', 'contact_no']
+        fields = ['business_name', 'description', 'contact_no', ]
 
     business_name = forms.CharField(max_length=20)
     cover_photo = forms.ImageField()
@@ -58,3 +58,4 @@ class ProfileForm(forms.ModelForm):
     business_permit = forms.ImageField()
     address = forms.CharField(max_length=100)
     contact_no = forms.CharField(max_length=20)
+    description = forms.Textarea()

@@ -1,5 +1,5 @@
 from django.contrib.auth.models import Group
-from django.shortcuts import redirect, render, HttpResponse
+from django.shortcuts import redirect, render
 from django.template import RequestContext
 from django.views.generic.edit import FormView
 from Profile.models import Profile
@@ -54,11 +54,12 @@ class ProfileView(FormView):
                 business_permit = self.request.FILES['business_permit']
                 address = self.request.POST['address']
                 contact_no = self.request.POST['contact_no']
+                description = self.request.POST['description']
                 if not Profile.objects.filter(user_id=self.id).exists():
 
                     profile = Profile(business_name=business_name, cover_photo=cover_photo, address=address,
                                       contact_no=contact_no, business_permit=business_permit,
-                                      business_plate=business_plate,user_id=self.id)
+                                      business_plate=business_plate, description=description, user_id=self.id)
                     profile.save()
                     # return redirect('/')
                     return render(request, 'Coordinator/validation.html')
@@ -70,6 +71,7 @@ class ProfileView(FormView):
                     profile.contact_no = contact_no
                     profile.business_plate = business_plate
                     profile.business_permit = business_permit
+                    profile.description = description
                     profile.save()
             else:
                 return redirect('/', context_instance=RequestContext(request))

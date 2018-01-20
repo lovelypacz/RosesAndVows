@@ -7,13 +7,14 @@
 {% block body %}
     <div class="container" style="margin-left:250px; margin-top: 130px;">
         <img src="{{ post.image.url }}" style="height: 250px; width: 250px;" alt="{{ post.package_name }}" />
-        <h2>Package Name </h2><h3>{{ post.package_name }}</h3>
-        <h2>Organizer </h2><h3>{{ post.author }}</h3>
-        <h2>Description </h2><br><h3>{{ post.description }}</h3><br><br>
+        <h2>Package Name </h2><h3>{{ post.package_name }}</h3><br>
+        <h2>Organizer </h2><h3>{{ profile.business_name }}</h3><br>
+        <h2>Description </h2><h3>{{ post.description }}</h3><br>
         {% if user.is_authenticated and user.groups.all.0.name == "Client" %}
             <a href="{% url 'site' id=user.pk %}"><h3>Message the Organizer</h3></a>
-        {% else %}
+        {% elif not user.is_authenticated %}
             <a href="{% url 'account_login' %}"><h3 style="color: red;">Login to enable the chat feature.</h3></a>
+        {% else %}
         {% endif %}
     </div>
 {% endblock %}

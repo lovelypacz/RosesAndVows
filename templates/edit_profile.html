@@ -1,28 +1,15 @@
-
-{#{%  extends 'home.html' %}#}
-{#{% load account_tags %}#}
+{% extends 'site_base.html' %}
 {% load i18n %}
 {% load static %}
 {% load bootstrap %}
-{% block content %}
-    <head>
-        {% include '_styles.html' %}
-    </head>
 
-    <header>
-        {% include '_navbar.html' %}
-    </header>
-    <br><br><br><br><br><br><br><br><br>
-{#    <form method="POST" action="{% url 'applicant_edit_profile' %}">{% if form.is_multipart %} #}
-{#        {{ form }}#}
-{#        <button type="submit">{% trans 'Edit Profile' %}</button>#}
-{#    </form>#}
-    <h1>Edit Your Profile</h1>
-    <form method="POST" action="{% url 'edit_profile' id=user.pk %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form|bootstrap }}
-        <input type="submit" value="Submit">
-    </form>
-
-{#    Applicant#}
+{% block body %}
+    <div style="margin-left: 120px; margin-top: 150px;">
+        <h1>Edit Your Profile</h1>
+        <form method="POST" action="{% url 'edit_profile' id=user.pk %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|bootstrap }}
+            <input class="btn btn-success btn-block btn-lg" type="submit" value="Submit">
+        </form>
+    </div>
 {% endblock %}

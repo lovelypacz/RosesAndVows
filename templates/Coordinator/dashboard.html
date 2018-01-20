@@ -17,7 +17,7 @@
 
 {%  block body %}
 
-    {% if profile_profile.is_validated == 1 and profile_profile.has_payed == 1 %}
+    {% if profile_profile.is_validated == 1 and profile_profile.has_paid == 1 %}
         <div class="container">
             <nav class="navbardash navbar-expand-lg">
                 <h1 class="navbar-name">My Account</h1>
@@ -58,18 +58,18 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 col-mar">
-                    <div class="thumbnail thumb-bor">
-                        <div class="caption cap-style">
-                            <h3 class="name-style">Archive</h3>
-                        </div>
-                        <a href="#" target="_blank">
-                            <img src="{% static 'img/archive.png' %}" alt="Archive"
-                                 style="width:180px; height:120px; padding:10px 0;">
-                        </a>
-                    </div>
+{#                <div class="col-md-4 col-mar">#}
+{#                    <div class="thumbnail thumb-bor">#}
+{#                        <div class="caption cap-style">#}
+{#                            <h3 class="name-style">Archive</h3>#}
+{#                        </div>#}
+{#                        <a href="#" target="_blank">#}
+{#                            <img src="{% static 'img/archive.png' %}" alt="Archive"#}
+{#                                 style="width:180px; height:120px; padding:10px 0;">#}
+{#                        </a>#}
+{#                    </div>#}
 
-                </div>
+{#                </div>#}
                 <div class="col-md-4 col-mar">
                     <div class="thumbnail thumb-bor">
                         <div class="caption cap-style">
@@ -77,7 +77,7 @@
                         </div>
                         <a href="{% url 'post_new' %}" target="_blank">
                             <img src="{% static 'img/archive.png' %}" alt="Archive"
-                                 style="width:180px; height:120px; padding:10px 0;">
+                                 style="width:180px; height:120px;">
                         </a>
                     </div>
                 </div>
@@ -86,7 +86,7 @@
         </div>
     {% else %}
         <br><br><br><br><br><br>
-        <h1>Ooops! Something went wrong. Bayad ka muna beh :)</h1>
+        <h1>Ooops! Something went wrong. Please pay your subscription fee. Thank you.</h1>
     {% endif %}
 {%  endblock %}
 </body>

@@ -3,13 +3,27 @@
 {% block body %}
     <div class="container" style="margin-left: 250px; margin-top: 120px;">
         <h3>List of Organizers</h3>
-        {% for user in object_list %}
-            {% if user != request.user and user.groups.all.0.name == "Coordinators"%}
-                <a href="{% url 'site' id=user.pk %}" class="btn btn-primary">
-                    Chat with {{ user.get_full_name }}
-                </a>
-                <br> <br>
+        <ul style="float: left; position: relative;">
+            <h4>Number of Organizers: {{ listOfOrgs|length }}</h4>
+            {% if listOfOrgs.count == 0 or not listOfOrgs %}
+                <br><h3>No post is found that matches your query.</h3>
+            {% else %}
+                {% for user in listOfOrgs %}
+                    <h2><a href="{% url 'site' id=user.user_id %}" >{{ user.business_name }}</a></h2>
+                {% endfor %}
             {% endif %}
-        {% endfor %}
+        </ul>
+{#        {% for user in listOfOrgs %}#}
+{#            <br><br>{{ user.business_name }}#}
+{#            {{ user.count }}#}
+{#            <a href="{% url 'site' id=user.id %}" >{{ user.business_name }}</a><br>#}
+{#            {% if user != request.user and user.groups.all.0.name == "Coordinator"%}#}
+{#                <a href="{% url 'site' id=user.pk %}" class="btn btn-primary">#}
+{#                    {{ user.get_full_name }}#}
+{#                </a>#}
+{#                <br> <br>#}
+{#            {% endif %}#}
+
+{#        {% endfor %}#}
     </div>
 {% endblock %}

@@ -3,6 +3,7 @@ from django.contrib.auth.models import Group, User
 from Coordinator.forms import SignupForm
 
 from Profile.models import Profile
+from Post.models import Post
 
 import account.views
 
@@ -16,10 +17,12 @@ def MySite(request, id):
     profile = get_object_or_404(User, id=id)
     profile_group_user = Group.objects.get(user=id)
     profile_profile = Profile.objects.get(user_id=id)
+    posts = list(Post.objects.filter(author=id))
 
     return render(request, 'Coordinator/mysite.html', {'profile': profile, \
                                                        'profile_group_user': profile_group_user, \
-                                                       'profile_profile': profile_profile})
+                                                       'profile_profile': profile_profile, \
+                                                       'posts': posts})
 
 
 class SignupView(account.views.SignupView):

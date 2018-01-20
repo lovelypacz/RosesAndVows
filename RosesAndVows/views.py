@@ -155,10 +155,41 @@ def show_profile(request, id):
         return render(request, 'Client/dashboard-2.html', {'profile': profile, 'profile_group_user': profile_group_user})
 
 
-class UserListView(generic.ListView):
-    model = get_user_model()
-    # These next two lines tell the view to index lookups by username
-    slug_field = 'username'
-    slug_url_kwarg = 'username'
-    template_name = 'list.html'
+def userListView(request):
+    listOfOrgs = Profile.objects.all()
+    organizers = User.objects.filter(groups__name="Coordinator")
+
+    orgs = 0
+    if organizers is not None:
+        for organizer in organizers:
+            if orgs == 0:
+                print('Organizer.id : {}' .format(organizer.id))
+                try:
+                    prof = Profile.objects.get(user_id=organizer.id)
+                except Profile.DoesNotExist:
+                    prof = None
+
+                if prof is not None:
+                    listOfOrgs = list(Profile.objects.filter(user_id=organizer.id))
+                    print('Business name : {}' .format(Profile.objects.get(user_id=organizer.id).business_name))
+                    orgs+= 1
+            else:
+                try:
+                    prof = Profile.objects.get(user_id=organizer.id)
+                except Profile.DoesNotExist:
+                    prof = None
+                if prof is not None:
+                    listOfOrgs.append(Profile.objects.get(user_id=organizer.pk))
+                    print('Business name : {}' .format(Profile.objects.get(user_id=organizer.id).business_name))
+                    orgs+=1
+    print('ListOFOrgs: {}' .format(listOfOrgs.__len__()))
+    print('ListOFOrgs: {}' .format(listOfOrgs))
+    return render(request, 'list.html', {'listOfOrgs': listOfOrgs})
+
+# class UserListView(generic.ListView):
+#     model = get_user_model()
+#     # These next two lines tell the view to index lookups by username
+#     slug_field = 'username'
+#     slug_url_kwarg = 'username'
+#     template_name = 'list.html'
 
