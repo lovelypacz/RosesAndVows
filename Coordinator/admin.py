@@ -39,25 +39,47 @@ class ProfileAdmin(admin.ModelAdmin):
                 self.admin_site.admin_view(self.process_activate),
                 name='account-activate',
             ),
+            url(
+                r'^(?P<account_id>.+)/paid/$',
+                self.admin_site.admin_view(self.process_activate),
+                name='account-paid',
+            ),
         ]
         return custom_urls + urls
 
-    def account_actions(self, obj):
+    def account_actions(self, obj,):
         user = User.objects.get(id=obj.user_id)
+        user_profile = Profile.objects.get(user_id=obj.user_id)
         if user.is_active == 0:
             return format_html(
-                '<a class="button" href="{}">Validate</a>&nbsp;'
+                # '<a class="button" href="{}">Validate</a>&nbsp;'
                 '<a class="button" href="{}">Activate</a>',
-                reverse('admin:account-validate', args=[obj.user_id]),
+                # reverse('admin:account-validate', args=[obj.user_id]),
                 reverse('admin:account-activate', args=[obj.user_id]),
             )
-        else:
-            return format_html(
-                '<a class="button" href="{}">Validate</a>&nbsp;'
-                '<a class="button" href="{}">Deactivate</a>',
-                reverse('admin:account-validate', args=[obj.user_id]),
-                reverse('admin:account-deactivate', args=[obj.user_id]),
-            )
+        elif user.is_active == 1:
+            if user_profile.is_validated == 0 and user_profile.has_paid == 0:
+                return format_html(
+                    '<a class="button" href="{}">Validate</a>&nbsp;'
+                    '<a class="button" href="{}">Deactivate</a>',
+                    reverse('admin:account-validate', args=[obj.user_id]),
+                    reverse('admin:account-deactivate', args=[obj.user_id]),
+                )
+            elif user_profile.is_validated == 1 and user_profile.has_paid == 0:
+                return format_html(
+                    '<a class="button" href="{}">Paid</a>&nbsp;'
+                    '<a class="button" href="{}">Deactivate</a>',
+                    reverse('admin:account-paid', args=[obj.user_id]),
+                    reverse('admin:account-deactivate', args=[obj.user_id]),
+                )
+            else:
+                return format_html(
+                    # '<a class="button" href="{}">Paid</a>&nbsp;'
+                    '<a class="button" href="{}">Deactivate</a>',
+                    # reverse('admin:account-paid', args=[obj.user_id]),
+                    reverse('admin:account-deactivate', args=[obj.user_id]),
+                )
+
 
     def process_validate(self, request, account_id, *args, **kwargs):
         user_profile = Profile.objects.get(user_id=account_id)
@@ -90,6 +112,16 @@ class ProfileAdmin(admin.ModelAdmin):
         user_profile2.save()
 
         email = EmailMessage('Notice from RosesAndVows', 'Your account has been successfully activated.', to=[User.objects.get(id=account_id).email])
+        email.send()
+        return redirect('/admin/Profile/profile')
+
+    def process_paid(self, request, account_id, *args, **kwargs):
+        user_profile2 = Profile.objects.get(user_id=account_id)
+        user_profile2.has_paid = 1
+        user_profile2.save()
+
+        email = EmailMessage('Notice from RosesAndVows', 'Your account is now ready to use. Enjoy your stay!',
+                             to=[User.objects.get(id=account_id).email])
         email.send()
         return redirect('/admin/Profile/profile')
 
