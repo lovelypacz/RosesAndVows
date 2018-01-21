@@ -145,7 +145,9 @@ def Root_Signup(request):
 def show_profile(request, id):
     profile = get_object_or_404(User, id=id)
     profile_group_user = Group.objects.get(user=id)
-    profile_profile = Profile.objects.get(user_id=id)
+    profile_profile = Profile.objects.all()
+    if profile_group_user.name == "Coordinator":
+        profile_profile = Profile.objects.get(user_id=id)
 
     if profile_group_user.name == 'Coordinator':
         return render(request, 'Coordinator/dashboard.html', {'profile': profile, \
