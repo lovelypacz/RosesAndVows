@@ -3,7 +3,7 @@
 {% load i18n %}
 
 {% block body %}
-
+{##}
     <div class="container" style="margin-left: 250px; margin-top: 120px;">
         <form role="form" method="get" action="{% url "search" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
             {% csrf_token %}

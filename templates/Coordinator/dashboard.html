@@ -16,7 +16,6 @@
 <body>
 
 {%  block body %}
-
     {% if profile_profile.is_validated == 1 and profile_profile.has_paid == 1 %}
         <div class="container">
             <nav class="navbardash navbar-expand-lg">
@@ -85,8 +84,9 @@
             </div>
         </div>
     {% else %}
-        <br><br><br><br><br><br>
-        <h1>Ooops! Something went wrong. Please pay your subscription fee. Thank you.</h1>
+        <div class="container" style="margin-top: 150px; text-align: center;">
+            <h1>Ooops! Something went wrong. Please pay your subscription fee. Thank you.</h1>
+        </div>
     {% endif %}
 {%  endblock %}
 </body>

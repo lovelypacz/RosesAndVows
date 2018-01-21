@@ -60,10 +60,11 @@ def post_edit(request, id):
 
 def search(request):
     posts = Post.objects.all()
+    # categories = ['Wedding', 'Debut', 'Thanksgiving']
     if request.method == "GET":
         businessName = request.GET.get('businessName', "")
-        category = request.GET.get('category', 'Wedding')
-        print('GET businessName : {}\nGET category : {}' .format(businessName, category))
+        cat = request.GET.get('category', 'Wedding')
+        print('GET businessName : {}\nGET category : {}' .format(businessName, cat))
 
         noOfBusinesses = 1
         if businessName != "":
@@ -76,14 +77,14 @@ def search(request):
             bizIndex = 0
             for business in businesses:
                 if bizIndex == 0:
-                    posts = list(Post.objects.filter(author=business.pk).filter(category__contains=category))
+                    posts = list(Post.objects.filter(author=business.pk).filter(category__contains=cat))
                     print('\nIndex number: {}, the first post {}'.format(bizIndex, posts))
                 else:
-                    posts.append(Post.objects.filter(author=business.pk).filter(category__contains=category))
+                    posts.append(Post.objects.filter(author=business.pk).filter(category__contains=cat))
                     print('\nIndex number: {}, iyang mga posts: {}' .format(bizIndex, posts))
                 bizIndex+=1
         else:
-            posts = list(Post.objects.filter(category__contains=category))
+            posts = list(Post.objects.filter(category__contains=cat))
     print("Rendering the requested template ... {}" .format(posts))
     return render(request, 'Post/search.html', {'posts' : posts})
 
