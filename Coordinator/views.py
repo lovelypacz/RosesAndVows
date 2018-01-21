@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404
 from django.contrib.auth.models import Group, User
-from Coordinator.forms import SignupForm
+from Coordinator.forms import SignupForm, ProfileForm
+
 
 from Profile.models import Profile
 from Post.models import Post
@@ -16,13 +17,19 @@ def home(request):
 def MySite(request, id):
     profile = get_object_or_404(User, id=id)
     profile_group_user = Group.objects.get(user=id)
-    profile_profile = Profile.objects.get(user_id=id)
-    posts = list(Post.objects.filter(author=id))
+    try:
+        profile_profile = Profile.objects.get(user_id=id)
+    except Profile.DoesNotExist:
+        profile_profile = None
 
-    return render(request, 'Coordinator/mysite.html', {'profile': profile, \
+    posts = list(Post.objects.filter(author=id))
+    if profile_profile is not None:
+        return render(request, 'Coordinator/mysite.html', {'profile': profile, \
                                                        'profile_group_user': profile_group_user, \
                                                        'profile_profile': profile_profile, \
                                                        'posts': posts})
+    else:
+        return render(request, 'edit_profile.html', {'form': ProfileForm})
 
 
 class SignupView(account.views.SignupView):

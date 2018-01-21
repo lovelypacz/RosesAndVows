@@ -147,12 +147,18 @@ def show_profile(request, id):
     profile_group_user = Group.objects.get(user=id)
     profile_profile = Profile.objects.all()
     if profile_group_user.name == "Coordinator":
-        profile_profile = Profile.objects.get(user_id=id)
+        try:
+            profile_profile = Profile.objects.get(user_id=id)
+        except Profile.DoesNotExist:
+            profile_profile = None
 
-    if profile_group_user.name == 'Coordinator':
-        return render(request, 'Coordinator/dashboard.html', {'profile': profile, \
-                                                              'profile_group_user': profile_group_user, \
-                                                              'profile_profile': profile_profile})
+        if profile_profile is not None:
+            return render(request, 'Coordinator/dashboard.html', {'profile': profile, \
+                                                                  'profile_group_user': profile_group_user, \
+                                                                  'profile_profile': profile_profile})
+        else:
+            return render(request, 'edit_profile.html', {'form': ProfileForm})
+
     else:
         return render(request, 'Client/dashboard-2.html', {'profile': profile, 'profile_group_user': profile_group_user})
 
